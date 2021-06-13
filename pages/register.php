@@ -12,14 +12,38 @@
 <body>
     <!-- Container Start -->
     <div class="container">
-        <!-- Login Form Start -->
-            <div class="row justify-content-cetner wrapper" id="login-box">
+        <!-- Register Form Start -->
+        <div class="row justify-content-cetner wrapper" id="register-box">
                 <div class="col-lg-12 my-auto">
                     <div class="card-group myShadow">
+                    <div class="card justify-content-center rounded-right myColor p-4">
+                            <h1 class="text-center font-weight-bold text-white">
+                                Hello, Friend!
+                            </h1>
+                            <hr class="my-3 bg-light myHr">
+                            <p class="text-center font-weight-bolder text-light lead">
+                                Already have an account, try login instead from button below!
+                            </p>
+                            <a href="login.php" class="btn btn-outline-light btn-lg align-self-center font-weight-bolder mt-4 myLinkBtn" id="loginLink">
+                                Login 
+                            </a>
+                        </div>
+                        
+                        <!-- Register Card -->
                         <div class="card rounded-left p-4" style="flex-grow: 1.4">
-                            <h1 class="text-center font-weight-bold text-primary">Signin to Account</h1>
+                            <h1 class="text-center font-weight-bold text-primary">Create New Account</h1>
                             <hr class="my-3">
                             <form action="" method="post" class="px-3" id="loginForm">
+                            <div class="input-group input-group-lg form-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text rounded-0">
+                                            <i class="far fa-user fa-lg"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" name="name" id="name" class="form-control rounded-0" placeholder="E-Mail..." required>                                
+                                </div>
+                                <!-- Full Name Field -->
+
                                 <div class="input-group input-group-lg form-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text rounded-0">
@@ -36,48 +60,30 @@
                                             <i class="fas fa-key fa-lg"></i>
                                         </span>
                                     </div>
-                                    <input type="password" name="password" id="password" class="form-control rounded-0" placeholder="Password..." required>                                
+                                    <input type="password" name="password" id="password" class="form-control rounded-0" minlength="5" placeholder="Password..." required>                                
+                                </div>
+                                <!-- Password Field -->
+
+                                <div class="input-group input-group-lg form-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text rounded-0">
+                                            <i class="fas fa-key fa-lg"></i>
+                                        </span>
+                                    </div>
+                                    <input type="password" name="repassword" id="repassword" class="form-control rounded-0" placeholder="Confirm Password..." minlength="5" required>                                
                                 </div>
                                 <!-- Password Field -->
 
                                 <div class="form-group">
-                                    <div class="custom-control custom-checkbox float-left">
-                                        <input type="checkbox" name="remember" id="remember" class="custom-control-input">
-                                        <label for="remember" class="custom-control-label">Remember Me</label>
-                                    </div>
-                                    
-                                    <div class="float-right forgot">
-                                        <a href="#" id="forgot-password">Forget Password</a>
-                                    </div>
-                                    <!-- Forget Password -->
-                                    <div class="clearfix"></div>
-                                </div>
-                                
-                                <!-- Remember Me Field -->
-
-                                <div class="form-group">
-                                    <input type="submit" value="Sign In" id="login-btn" class="btn btn-primary btn-lg btn-block myBtn">
+                                    <input type="submit" value="Sign Up" id="register-btn" class="btn btn-primary btn-lg btn-block myBtn">
                                 </div>
                             </form>
                         </div>
-                        <!-- Login Card -->
                         
-                        <div class="card justify-content-center rounded-right myColor p-4">
-                            <h1 class="text-center font-weight-bold text-white">
-                                Welcome Back
-                            </h1>
-                            <hr class="my-3 bg-light myHr">
-                            <p class="text-center font-weight-bolder text-light lead">
-                                Enter your personal details and start your jouerny with us
-                            </p>
-                            <a href="register.php" class="btn btn-outline-light btn-lg align-self-center font-weight-bolder mt-4 myLinkBtn" id="registerLink">
-                                Sign Up
-                            </a>
-                        </div>
                     </div>
                 </div>
-            </div>
-        <!-- Login Form End -->
+            </div>            
+        <!-- Register Form End -->
     </div>
     <!-- Container End -->
 
