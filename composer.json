@@ -1,0 +1,15 @@
+{
+    "name": "mohamedabdellatef/usermanagmentsystem",
+    "description": "Simple User Manangment System with Dashboard that allows the admin to fully control the users.",
+    "type": "project",
+    "license": "GNU",
+    "authors": [
+        {
+            "name": "Mohamed Abdellatef",
+            "email": "info@mohamedabdellatef.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.3"
+    }
+}
