@@ -47,7 +47,7 @@
                                     </div>
                                     
                                     <div class="float-right forgot">
-                                        <a href="#" id="forgot-password">Forget Password</a>
+                                        <a href="forget-password.php" id="forgot-password">Forget Password</a>
                                     </div>
                                     <!-- Forget Password -->
                                     <div class="clearfix"></div>
