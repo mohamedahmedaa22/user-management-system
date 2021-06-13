@@ -48,3 +48,15 @@ body {
   height: 2px;
   border-radius: 100px;
 }
+
+.myLinkBtn {
+  border-radius: 100px;
+  width: 50%;
+  border: 2px solid #fff;
+}
+
+@media screen and (max-width: 720px) {
+  .wrapper {
+    margin: 2px;
+  }
+}
