@@ -30,7 +30,8 @@ body {
   box-shadow: 0 5px 10px #111;
 }
 
-.myBtn {
+.myBtn,
+.swal2-styled.swal2-confirm {
   border-radius: 50px;
   font-weight: bold;
   font-size: 20px;
