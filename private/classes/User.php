@@ -60,4 +60,54 @@ class User extends ARDatabase {
         $this->hashed_password = password_hash($password, $this->alog);
         return $this->hashed_password;
     }
+
+    public function userLogin(array $args = []) {
+        if (!empty($args)) {
+            // assign the args to properties
+            $this->setArgs($args);
+            
+            // find user in database
+            $user = $this->getRecords($this->table, ['email', 'password'], [
+                'email' => $args['email'],
+                'deleted' => 0
+            ]);
+            
+            // didn't found the user
+            if (!$user) {
+                return [
+                    'status' => false,
+                    'message' => 'Wrong Credintials!'
+                ];
+                exit;
+            }
+
+            // get first user found
+            $user = $user[0];
+
+            // check if password is correct
+            if (password_verify($this->password, $user['password'])) {
+                // check if remember me is checked
+                if (isset($_POST['remember'])) {
+                    setcookie('email', $this->email, time() + (30 * 24 * 60 * 60), '/');
+                    setcookie('password', $this->password, time() + (30 * 24 * 60 * 60), '/');
+                } else {
+                    setcookie('email', '', time() - (30 * 24 * 60 * 60));
+                    setcookie('password', '', time() - (30 * 24 * 60 * 60));
+                }
+
+                return [
+                    'status' => true,
+                    'action' => 'login',
+                    'email' => $this->email
+                ];
+                exit;
+            } else {
+                return [
+                    'status' => false,
+                    'message' => 'Wrong Credintials!'
+                ];
+                exit;
+            }
+        }
+    }
 }

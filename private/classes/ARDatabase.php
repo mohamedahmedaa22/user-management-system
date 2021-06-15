@@ -3,6 +3,7 @@
 namespace Classes;
 
 use PDO;
+use PDOException;
 
 class ARDatabase {
     protected $connection;
@@ -35,7 +36,7 @@ class ARDatabase {
         if (count($records) == 1) {
             $sql .= "$records[0] ";
         } else {
-            $sql .= implode(', ', $records);
+            $sql .= implode(', ', $records)." ";
         }
         $sql .= "FROM {$table}";
         if (!is_null($filters)) {
@@ -56,9 +57,14 @@ class ARDatabase {
             }
         }
 
-        $stmt = $this->connection->prepare($sql);
-        $stmt->execute();
+        try {
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $stmt = $this->connection->prepare($sql);
+            $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            return ['error' => $e->getMessage(), 'sql' => $sql];
+        } 
     }
 }
