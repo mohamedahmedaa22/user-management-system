@@ -8,7 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/validator/13.6.0/validator.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
-    <?=($customScript) ? $customScript : '';?>
+    <?=(isset($customScript)) ? $customScript : '';?>
 
 </body>
 </html>

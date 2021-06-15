@@ -96,7 +96,7 @@
                 } else {
                     $('#errors').hide();
                     $.ajax({
-                        url: '../private/actions.php',
+                        url: '../../private/actions.php',
                         method: 'post',
                         data: $('#registerForm').serialize()+'&action=register',
                         success: function(response) {
@@ -108,7 +108,7 @@
                                     text: json.message
                                 });
                             } else {
-                                window.location = '../index.php';
+                                window.location = '../../index.php';
                             }
                         }
                     });

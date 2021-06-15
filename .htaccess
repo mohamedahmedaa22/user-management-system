@@ -1,0 +1,4 @@
+RewriteEngine On 
+    RewriteCond %{HTTPS} off 
+    RewriteCond %{REQUEST_URI} /[SSL Requested page]/ 
+    RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R,L]
