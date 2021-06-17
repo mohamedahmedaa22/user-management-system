@@ -1,6 +1,11 @@
 <?php
 
-class Database {
+namespace Classes;
+
+use PDO;
+use PDOException;
+
+class DatabaseOBj {
     
     private $server;
     private $dbName;
@@ -22,7 +27,7 @@ class Database {
             // set the PDO error mode to exception
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
-            echo "Database Error: ". $e->getMessage();
+            return "Database Error: ". $e->getMessage();
         }
         return $this->conn;
     }
