@@ -37,4 +37,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         echo json_encode($login);
     }
+
+    // Forget Password Request
+    if ($_POST['action'] == 'forgetPassword') {
+        $user = new User($connection);
+        $resetPassword = $user->forgetPassword([
+            'email' => $_POST['email'],
+            'token' => str_shuffle(uniqid())
+        ]);
+        echo json_encode($resetPassword);
+    }
 }

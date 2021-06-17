@@ -24,15 +24,27 @@ class User extends ARDatabase {
     protected $hashed_password;
 
     
+    /**
+     * Fetch user inputs to any method into object protected properties
+     *
+     * @param array $args array of user inputs
+     * @return void fetch array to properties
+     */
     protected function setArgs(array $args = []) {
         foreach ($args as $property => $value) {
             $this->$property = $this->sanitizeRecord($value);
         } 
     }
     
+    /**
+     * User Registration Method To Create New Account
+     *
+     * @param array $args user inputs to be fetched
+     * @return array [] Response
+     */
     public function createUser(array $args = []) {
         $this->setArgs($args);
-        if (!$this->user_exists($this->email)) {
+        if (!$this->userExists($this->email)) {
             $this->insertRecord($this->table, [
                 'name' => $this->name,
                 'email' => $this->email,
@@ -52,15 +64,41 @@ class User extends ARDatabase {
         }
     }
 
-    public function user_exists($email) {
-        return $this->getRecords($this->table, ['email'], ['email' => $email]);
+    /**
+     * Check if user exists
+     *
+     * @param string $email user's email
+     * @return bool user exits
+     */
+    public function userExists($email) {
+        $user = $this->getRecords($this->table, ['email'], [
+            'email' => $email,
+            'deleted' => 0
+        ]);
+        if ($user) {
+            return true;
+        }  else {
+            return false;
+        }
     }
 
+    /**
+     * Hash any string into algorith
+     *
+     * @param string $password input password
+     * @return string hashed version of the password
+     */
     protected function hash_password($password) {
         $this->hashed_password = password_hash($password, $this->alog);
         return $this->hashed_password;
     }
 
+    /**
+     * User Login Method Create New User's Session
+     *
+     * @param array $args user input to be fetched
+     * @return array [] login message
+     */
     public function userLogin(array $args = []) {
         if (!empty($args)) {
             // assign the args to properties
@@ -109,5 +147,29 @@ class User extends ARDatabase {
                 exit;
             }
         }
+    }
+
+    /**
+     * Forget Password Method
+     * 
+     * @param array $args [Token, Email] user input to be fetched
+     * @return bool forget status
+     */
+    public function forgetPassword(array $args = []) {
+        // check if user input is empty
+        if (!empty($args)) {
+
+            // fetch the args array
+            $this->setArgs($args);
+
+            // check if email exists
+            if ($this->userExists($this->email)) {
+                return $this->updateRecord($this->table, ['token' => $this->token, 'token_expire' => "DATE_ADD(NOW(), INTERVAL 10 MINUTE)"], ['email' => $this->email]);
+            }
+            
+            return false;
+        }
+
+        return false;
     }
 }
